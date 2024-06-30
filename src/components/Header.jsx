@@ -3,23 +3,17 @@ import logo from "../assets/logo.png";
 import user from "../assets/user.png";
 import { IoSearchOutline } from "react-icons/io5";
 import { useEffect, useState } from "react";
-export const navigation = [
-  {
-    label: "TV Shows",
-    href: "tv",
-  },
-  {
-    label: "Movies",
-    href: "movie",
-  },
-];
+import { navigation } from "../contants/navigation";
+
 const Header = () => {
   const [searchInput, setSearchInput] = useState("");
   const navigate = useNavigate();
 
   // Link input on Search
   useEffect(() => {
-    navigate(`/search?q=${searchInput}`);
+    if (searchInput) {
+      navigate(`/search?q=${searchInput}`);
+    }
   }, [searchInput]);
 
   //Don't ReLoad Page
