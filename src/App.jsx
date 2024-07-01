@@ -6,21 +6,24 @@ import MobileNavigation from "./components/MobileNavigation";
 import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setBannerData } from "./store/movieoSlide"; // Import slice
+// import { setBannerData } from "./store/movieoSlide";
+
+import { movieoSlide } from "./store/movieoSlide";
 
 function App() {
   const dispatch = useDispatch();
-
   const fetchTrendingData = async () => {
     try {
       const response = await axios.get("/trending/all/week");
 
       // Dispatch action với dữ liệu
-      dispatch(setBannerData(response.data.results));
+      // console.log("Response", response.data.results); // đúng ra kết quả
 
-      // console.log("Response", response.data.results);
+      // console.log("Check setBannerData", setBannerData);
+
+      dispatch(movieoSlide.actions.setBannerData(response.data.results)); // để setBannerData là lỗi
     } catch (error) {
-      console.log("error", error);
+      console.log("error HUY", error);
     }
   };
 

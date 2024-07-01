@@ -5,7 +5,7 @@ const initialState = {
 };
 
 export const movieoSlide = createSlice({
-  name: "movieo",
+  name: "movieoSlide", // Sử dụng "movieoSlide" thay vì "movieoSlideSlide"
   initialState,
   reducer: {
     setBannerData: (state, action) => {

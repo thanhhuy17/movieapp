@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import movieoProducer from "./movieoSlide";
+import movieoSlideReducer from "./movieoSlide.jsx";
 
 export const store = configureStore({
   reducer: {
-    movieoData: movieoProducer,
+    movieoSlide: movieoSlideReducer, // Sử dụng "movieoSlide" thay vì "movieoData"
   },
 });
+
+export default store;
