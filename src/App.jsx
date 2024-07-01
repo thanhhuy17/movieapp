@@ -6,39 +6,46 @@ import MobileNavigation from "./components/MobileNavigation";
 import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-// import { setBannerData } from "./store/movieoSlide";
-
-import { movieoSlide } from "./store/movieoSlide";
+import { setBannerData, setImageURL } from "./store/movieoSlide";
 
 function App() {
   const dispatch = useDispatch();
+  // get Trending
   const fetchTrendingData = async () => {
     try {
       const response = await axios.get("/trending/all/week");
 
-      // Dispatch action với dữ liệu
-      // console.log("Response", response.data.results); // đúng ra kết quả
-
-      // console.log("Check setBannerData", setBannerData);
-
-      dispatch(movieoSlide.actions.setBannerData(response.data.results)); // để setBannerData là lỗi
+      dispatch(setBannerData(response.data.results)); // để setBannerData là lỗi
     } catch (error) {
-      console.log("error HUY", error);
+      console.log("error Get Trending", error);
+    }
+  };
+  //Get Configuration
+  const fetchConfiguration = async () => {
+    try {
+      const response = await axios.get("/configuration");
+
+      dispatch(setImageURL(response.data.images.secure_base_url + "original"));
+    } catch (error) {
+      console.log("error Get Configuration", error);
     }
   };
 
   useEffect(() => {
     fetchTrendingData();
+    fetchConfiguration();
   }, []);
 
   return (
     <main className="pb-14 lg:pb-0">
       <Header />
-      <div className="pt-16">
+
+      <div className="">
         {/* Include element in Router Dom => index.jsx */}
         <Outlet />
       </div>
       <Footer />
+
       <MobileNavigation />
     </main>
   );
