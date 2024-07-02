@@ -37,10 +37,11 @@ const BannerHome = () => {
     <section className="w-full h-full">
       <div className="flex min-h-full max-h-[95vh] overflow-hidden">
         {bannerData.map((data, index) => {
-          console.log("Data", data);
+          // console.log("Data", data);
           return (
             // eslint-disable-next-line react/jsx-key
             <div
+              key={data.id + "BannerHome" + index}
               className="min-w-full min-h-[450px] lg:min-h-full overflow-hidden relative group"
               style={{ transform: `translateX(-${currentImg * 100}%)` }} // Skill next page
             >

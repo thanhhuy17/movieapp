@@ -10,5 +10,6 @@
 }
 body{
   font-family:  "Nunito Sans", sans-serif;
-  @apply bg-neutral-900 text-neutral-300
+  @apply bg-neutral-900 text-neutral-300;
+  /* scroll-behavior: smooth; */
 }

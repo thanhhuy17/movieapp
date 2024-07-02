@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import moment from "moment";
 import { useSelector } from "react-redux";
 
@@ -12,7 +13,7 @@ const Card = ({ data, trending, index }) => {
       <div className="absolute top-4 ">
         {trending && (
           // chỗ này bỏ overflow
-          <div className="py-1 px-4 backdrop-blur-3xl rounded-r-full bg-black/20 overflow-hidden">
+          <div className="py-1 px-4 backdrop-blur-3xl rounded-r-full bg-black/20 w-auto">
             #{index} Trending
           </div>
         )}
