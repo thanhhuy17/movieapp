@@ -1,9 +1,7 @@
 import { useSelector } from "react-redux";
 import BannerHome from "../components/BannerHome";
-// import Card from "../components/Card";
+
 import HorizonetalScrollCard from "../components/HorizonetalScrollCard";
-import { useEffect, useState } from "react";
-import axios from "axios";
 import useFetch from "../Hooks/useFetch";
 
 const Home = () => {
@@ -25,7 +23,8 @@ const Home = () => {
 
   const { data: nowPlayingData } = useFetch("movie/now_playing");
   const { data: topRatesData } = useFetch("movie/top_rated");
-  const { data: popularMovie } = useFetch("movie/popular");
+  const { data: popularMovie } = useFetch("tv/popular");
+  const { data: onTheAir } = useFetch("tv/on_the_air");
 
   return (
     <div>
@@ -37,11 +36,13 @@ const Home = () => {
         trending={true}
       />
 
-      <HorizonetalScrollCard data={nowPlayingData} heading={"Now Playing"} />
+      <HorizonetalScrollCard data={nowPlayingData} heading={"Now Playing"} media_type={"movie"}/>
 
-      <HorizonetalScrollCard data={topRatesData} heading={"Top Rated"} />
+      <HorizonetalScrollCard data={topRatesData} heading={"Top Rated"} media_type={"movie"}/>
 
-      <HorizonetalScrollCard data={popularMovie} heading={"Popular"} />
+      <HorizonetalScrollCard data={popularMovie} heading={"Popular"} media_type={"tv"}/>
+
+      <HorizonetalScrollCard data={onTheAir} heading={"The next 7 days"} media_type={"tv"}/>
     </div>
   );
 };

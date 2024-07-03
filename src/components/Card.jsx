@@ -3,14 +3,15 @@ import moment from "moment";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-const Card = ({ data, trending, index }) => {
+const Card = ({ data, trending, index, media_type }) => {
   const imageURL = useSelector((state) => state.movie.imageURL);
+  const mediaType = data.media_type ?? media_type
   // console.log("Huy Check Release Date: ", data);
   //   console.log("Huy Check True: ", trending && <div>#{index} Trending</div>);
   return (
     <Link
-      to={"/" + data.media_type + "/" + data.id}
-      className="w-full max-w-[230px] h-80 rounded relative overflow-hidden"
+      to={"/" + mediaType + "/" + data.id}
+      className="w-full min-w-[230px] max-w-[230px] h-80 rounded relative overflow-hidden block hover:scale-105 transition-all"
     >
       <img src={imageURL + data?.poster_path} alt="" />
 

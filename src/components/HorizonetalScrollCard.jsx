@@ -3,13 +3,14 @@ import Card from "./Card";
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
 
 // eslint-disable-next-line react/prop-types
-const HorizonetalScrollCard = ({ data = [], heading , trending}) => {
+const HorizonetalScrollCard = ({ data = [], heading, trending, media_type }) => {
   // const trendingLength = useMemo(() => data.length, [data]);
   // const [trendingLength, setTrendingLength] = useState(0);
   // useEffect(() => {
   //   setTrendingLength(data.length);
   // }, [data]);
   // console.log("Show Trending Length: ", trendingLength);
+  const trendingLength = data.length;
   const containerRef = useRef();
 
   //Next Card =>>
@@ -30,7 +31,7 @@ const HorizonetalScrollCard = ({ data = [], heading , trending}) => {
           {/* <div className="grid grid-cols-[repeat(auto-fit,230px)]  grid-flow-col gap-6 overflow-x-scroll"> */}
           <div
             ref={containerRef}
-            className={`relative grid grid-cols-[repeat(20,230px)] gap-6 grid-flow-col overflow-x-scroll z-10 scroll-smooth transition-all scrolbar-none`}
+            className={`relative grid grid-cols-[repeat(${trendingLength},230px)] gap-6 grid-flow-col overflow-x-scroll z-10 scroll-smooth transition-all scrolbar-none`}
           >
             {data.map((data, index) => {
               return (
@@ -40,6 +41,7 @@ const HorizonetalScrollCard = ({ data = [], heading , trending}) => {
                   data={data}
                   index={index + 1}
                   trending={trending}
+                  media_type={media_type}
                 />
               );
             })}
