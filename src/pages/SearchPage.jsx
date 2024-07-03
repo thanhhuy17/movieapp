@@ -1,20 +1,27 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Card from "../components/Card";
 
 const SearchPage = () => {
   const location = useLocation();
-  
+  const [data, setData] = useState([]);
+  const [page, setPage] = useState(1);
+  const navigate = useNavigate();
 
-  const[data, setData] = useState([]);
+  //Function Add Page ++
+  const handleScroll = () => {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+      setPage((prev) => prev + 1);
+    }
+  };
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("search/collection", {
+      const response = await axios.get("search/multi", {
         params: {
           query: location?.search?.slice(3),
-          page: 1,
+          page: page,
         },
       });
       setData((prev) => {
@@ -24,12 +31,31 @@ const SearchPage = () => {
       console.log("Error ExplorePage: ", error);
     }
   };
-  // console.log("location:", location.search.slice(3));
-  useEffect(()=>{
-    fetchData()
-  },[location?.search])
+
+  useEffect(() => {
+    setPage(1);
+    setData([]);
+    fetchData();
+  }, [location?.search]);
+
+  // Mỗi khi trang tăng lên 1 thì lấy dữ liệu về
+  useEffect(() => {
+    fetchData();
+  }, [page]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+  }, []);
   return (
     <div className="pt-16">
+      <div className="lg:hidden sticky bg-transparent top-16 z-40">
+        <input
+          className="bg-neutral-200 border-none py-2 px-3 rounded-full w-full text-black"
+          type="text"
+          placeholder="Search here ..."
+          onChange={(e) => navigate(`/search?q=${e.target.value}`)}
+        />
+      </div>
       <div className="container mx-auto">
         <h3 className="capitalize text-lg lg:text-xl py-3 font-semibold">
           Search Results
@@ -40,7 +66,7 @@ const SearchPage = () => {
             return (
               <Card
                 data={searchData}
-                key={searchData.id + "searchdata"}
+                key={searchData.id + "searchdata" + index}
                 media_type={searchData.media_type}
               />
             );

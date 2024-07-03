@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Card = ({ data, trending, index, media_type }) => {
   const imageURL = useSelector((state) => state.movie.imageURL);
-  const mediaType = data.media_type ?? media_type
+  const mediaType = data.media_type ?? media_type;
   // console.log("Huy Check Release Date: ", data);
   //   console.log("Huy Check True: ", trending && <div>#{index} Trending</div>);
   return (
@@ -13,7 +13,13 @@ const Card = ({ data, trending, index, media_type }) => {
       to={"/" + mediaType + "/" + data.id}
       className="w-full min-w-[230px] max-w-[230px] h-80 rounded relative overflow-hidden block hover:scale-105 transition-all"
     >
-      <img src={imageURL + data?.poster_path} alt="" />
+      {data?.poster_path ? (
+        <img src={imageURL + data?.poster_path} />
+      ) : (
+        <div className="bg-neutral-800 h-full w-full flex justify-center items-center">
+          No Image Found
+        </div>
+      )}
 
       <div className="absolute top-4 ">
         {trending && (

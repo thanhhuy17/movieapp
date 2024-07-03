@@ -60,7 +60,7 @@ const ExplorePage = () => {
             return (
               <Card
                 data={exploreData}
-                key={exploreData.id + "exploreSection"}
+                key={exploreData.id + "exploreSection" + index}
                 media_type={useParam.explore}
               />
             );

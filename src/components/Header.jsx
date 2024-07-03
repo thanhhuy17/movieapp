@@ -34,7 +34,7 @@ const Header = () => {
           {navigation.map((nav, index) => {
             return (
               // eslint-disable-next-line react/jsx-key
-              <div key={nav.label}>
+              <div key={nav.label+"header"+index}>
                 <NavLink
                   to={nav.href}
                   className={({ isActive }) =>
