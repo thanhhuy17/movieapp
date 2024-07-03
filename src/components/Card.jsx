@@ -1,13 +1,17 @@
 /* eslint-disable react/prop-types */
 import moment from "moment";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Card = ({ data, trending, index }) => {
   const imageURL = useSelector((state) => state.movie.imageURL);
-  //   console.log("Huy Check Release Date: ", data);
+  // console.log("Huy Check Release Date: ", data);
   //   console.log("Huy Check True: ", trending && <div>#{index} Trending</div>);
   return (
-    <div className="w-full max-w-[230px] h-80 rounded relative overflow-hidden">
+    <Link
+      to={"/" + data.media_type + "/" + data.id}
+      className="w-full max-w-[230px] h-80 rounded relative overflow-hidden"
+    >
       <img src={imageURL + data?.poster_path} alt="" />
 
       <div className="absolute top-4 ">
@@ -31,7 +35,7 @@ const Card = ({ data, trending, index }) => {
           </p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

@@ -10,7 +10,7 @@ import { setBannerData, setImageURL } from "./store/movieoSlide";
 
 function App() {
   const dispatch = useDispatch();
-  // get Trending
+  // Get Trending
   const fetchTrendingData = async () => {
     try {
       const response = await axios.get("/trending/all/week");
