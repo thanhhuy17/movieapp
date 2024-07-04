@@ -6,13 +6,16 @@ import moment from "moment";
 import Divider from "../components/Divider";
 import HorizonetalScrollCard from "../components/HorizonetalScrollCard";
 import useFetch from "../Hooks/useFetch";
+import { useState } from "react";
+import PlayVideo from "../components/PlayVideo";
+
 
 const DetailsPage = () => {
   const params = useParams();
   const imageURL = useSelector((state) => state.movie.imageURL);
 
   const { data } = useFetchDetails(`/${params.explore}/${params.id}`);
-  // console.log("Data Detail Page: ", data);
+  console.log("Data: ", data);
 
   const duration = (Number(data?.runtime) / 60).toFixed(1).split(".");
 
@@ -27,6 +30,9 @@ const DetailsPage = () => {
     `/${params.explore}/${params.id}/recommendations`
   );
 
+  const [playVideo, setPlayVideo] = useState(false);
+  const [playVideoId, setPlayVideoId] = useState("");
+
   // console.log("Data Cast: ", castDetail);
   const writer = castDetail?.crew
     ?.filter((el) => el?.job === "Writer")
@@ -34,7 +40,11 @@ const DetailsPage = () => {
     .join(", ");
   // console.log("writer", writer);
 
-  // console.log("check scroll: ", wayBackInitial);
+  // Play Video
+  const handlePlayVideo = (data) => {
+    setPlayVideoId(data.id);
+    setPlayVideo(true);
+  };
 
   return (
     <div>
@@ -50,11 +60,17 @@ const DetailsPage = () => {
       </div>
 
       <div className="container mx-auto pt-16 lg:py-1 lg:flex gap-5">
-        <div className=" mx-auto relative lg:-mt-28 lg:mx-0 w-fit min-w-60 ">
+        <div className=" mx-auto relative lg:-mt-28 lg:mx-0 w-fit min-w-60 text-center">
           <img
             className="w-60 h-80 rounded object-cover" //lg:w-[800px]
             src={imageURL + data?.poster_path}
           />
+          <button
+            onClick={() => handlePlayVideo(data)}
+            className="bg-white w-full px-4 py-2 text-black font-bold rounded-lg mt-4 transition-colors hover:bg-gradient-to-r from-orange-700 to-orange-300 hover:scale-110 "
+          >
+            Play Now
+          </button>
         </div>
 
         <div>
@@ -104,14 +120,14 @@ const DetailsPage = () => {
           </div>
           <Divider />
           <div>
-            <h2 className="text-2xl font-bold mt-2 mb-2">Cast: </h2>
-            <div className="grid grid-cols-[repeat(auto-fit,96px)] gap-4">
+            <h2 className="text-2xl font-bold mt-2 mb-2 mx-7">CAST</h2>
+            <div className="grid grid-cols-[repeat(auto-fit,96px)] gap-4 mx-7">
               {castDetail?.cast?.map((startCast, index) => {
                 return (
                   <div key={index + "startCart"}>
                     <div className="flex flex-col gap-2">
                       <img
-                        className="w-24 h-24 object-cover rounded-full"
+                        className="w-24 h-24 object-cover rounded-full hover:scale-105 transition-all"
                         src={imageURL + startCast?.profile_path}
                         alt=""
                       />
@@ -138,6 +154,12 @@ const DetailsPage = () => {
           heading={"Recommend " + params?.explore}
           media_type={params?.explore}
         />
+      </div>
+
+      <div>
+        {playVideo && (
+          <PlayVideo data={data?.id}  close={() => setPlayVideo(false)} media_type={params?.explore}  />//index={data?.index}
+        )}
       </div>
     </div>
   );
