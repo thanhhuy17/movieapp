@@ -5,6 +5,7 @@ const initialState = {
   imageURL: "",
 };
 
+
 export const movieoSlide = createSlice({
   name: "movie", 
   initialState,
@@ -17,7 +18,6 @@ export const movieoSlide = createSlice({
     }
   },
 });
-
 export const { setBannerData, setImageURL } = movieoSlide.actions;
 
 export default movieoSlide.reducer;
