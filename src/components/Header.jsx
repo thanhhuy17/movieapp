@@ -4,6 +4,7 @@ import user from "../assets/user.png";
 import { IoSearchOutline } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import { navigation } from "../contants/navigation";
+import wayBackInitial from "../Hooks/useInitialPage";
 
 const Header = () => {
   const location = useLocation()
@@ -25,7 +26,7 @@ const Header = () => {
   };
   return (
     <div className="fixed top-0 w-full h-16 bg-black bg-opacity-75 z-40">
-      <div className="container mx-auto px-3 flex items-center h-full">
+      <div className="container mx-auto px-3 flex items-center h-full" onClick={wayBackInitial}>
         <Link to={"/"}>
           <img src={logo} alt="logo" width={120} />
         </Link>

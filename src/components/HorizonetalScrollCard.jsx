@@ -1,15 +1,15 @@
+/* eslint-disable react/prop-types */
 import { useRef } from "react";
 import Card from "./Card";
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
+// import wayBackInitial from "../Hooks/useInitialPage";
 
-// eslint-disable-next-line react/prop-types
-const HorizonetalScrollCard = ({ data = [], heading, trending, media_type }) => {
-  // const trendingLength = useMemo(() => data.length, [data]);
-  // const [trendingLength, setTrendingLength] = useState(0);
-  // useEffect(() => {
-  //   setTrendingLength(data.length);
-  // }, [data]);
-  // console.log("Show Trending Length: ", trendingLength);
+const HorizonetalScrollCard = ({
+  data = [],
+  heading,
+  trending,
+  media_type,
+}) => {
   const trendingLength = data.length;
   const containerRef = useRef();
 
@@ -28,14 +28,13 @@ const HorizonetalScrollCard = ({ data = [], heading, trending, media_type }) => 
         </h2>
 
         <div className="overflow-hidden relative">
-          {/* <div className="grid grid-cols-[repeat(auto-fit,230px)]  grid-flow-col gap-6 overflow-x-scroll"> */}
           <div
+            //onClick={wayBackInitial} //Back Home
             ref={containerRef}
             className={`relative grid grid-cols-[repeat(${trendingLength},230px)] gap-6 grid-flow-col overflow-x-scroll z-10 scroll-smooth transition-all scrolbar-none`}
           >
             {data.map((data, index) => {
               return (
-                // eslint-disable-next-line react/jsx-key
                 <Card
                   key={data.id}
                   data={data}

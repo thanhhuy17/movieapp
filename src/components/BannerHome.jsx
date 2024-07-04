@@ -19,7 +19,7 @@ const BannerHome = () => {
     }
   };
 
-  // Next Page every 2s
+  // Next Page every 4s
   useEffect(() => {
     const interval = setInterval(() => {
       if (currentImg < bannerData.length - 1) {
@@ -29,7 +29,7 @@ const BannerHome = () => {
       }
     }, 4000);
     return () => clearInterval(interval);
-  }, [bannerData, imageURL]);
+  }, [bannerData, imageURL, currentImg]);
 
   // console.log("Banner Home Log", bannerData);
   // console.log("Image Home Log", imageURL);

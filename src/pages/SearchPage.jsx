@@ -16,11 +16,12 @@ const SearchPage = () => {
     }
   };
 
+  const query = location?.search?.slice(3);
   const fetchData = async () => {
     try {
       const response = await axios.get("search/multi", {
         params: {
-          query: location?.search?.slice(3),
+          query: query,
           page: page,
         },
       });
@@ -33,14 +34,18 @@ const SearchPage = () => {
   };
 
   useEffect(() => {
-    setPage(1);
-    setData([]);
-    fetchData();
+    if (query) {
+      setPage(1);
+      setData([]);
+      fetchData();
+    }
   }, [location?.search]);
 
   // Mỗi khi trang tăng lên 1 thì lấy dữ liệu về
   useEffect(() => {
-    fetchData();
+    if (query) {
+      fetchData();
+    }
   }, [page]);
 
   useEffect(() => {
@@ -54,6 +59,7 @@ const SearchPage = () => {
           type="text"
           placeholder="Search here ..."
           onChange={(e) => navigate(`/search?q=${e.target.value}`)}
+          value={query.split("%20").join(" ")}
         />
       </div>
       <div className="container mx-auto">

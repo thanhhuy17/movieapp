@@ -12,7 +12,7 @@ const DetailsPage = () => {
   const imageURL = useSelector((state) => state.movie.imageURL);
 
   const { data } = useFetchDetails(`/${params.explore}/${params.id}`);
-  console.log("Data Detail Page: ", data);
+  // console.log("Data Detail Page: ", data);
 
   const duration = (Number(data?.runtime) / 60).toFixed(1).split(".");
 
@@ -27,12 +27,14 @@ const DetailsPage = () => {
     `/${params.explore}/${params.id}/recommendations`
   );
 
-  console.log("Data Cast: ", castDetail);
+  // console.log("Data Cast: ", castDetail);
   const writer = castDetail?.crew
     ?.filter((el) => el?.job === "Writer")
     ?.map((el) => el?.name)
     .join(", ");
   // console.log("writer", writer);
+
+  // console.log("check scroll: ", wayBackInitial);
 
   return (
     <div>
@@ -129,10 +131,12 @@ const DetailsPage = () => {
         <HorizonetalScrollCard
           data={similorData}
           heading={"Similor " + params?.explore}
+          media_type={params?.explore}
         />
         <HorizonetalScrollCard
           data={recommendationData}
           heading={"Recommend " + params?.explore}
+          media_type={params?.explore}
         />
       </div>
     </div>

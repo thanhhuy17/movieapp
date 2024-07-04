@@ -2,6 +2,7 @@
 import moment from "moment";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import wayBackInitial from "../Hooks/useInitialPage";
 
 const Card = ({ data, trending, index, media_type }) => {
   const imageURL = useSelector((state) => state.movie.imageURL);
@@ -10,6 +11,7 @@ const Card = ({ data, trending, index, media_type }) => {
   //   console.log("Huy Check True: ", trending && <div>#{index} Trending</div>);
   return (
     <Link
+      onClick={wayBackInitial}
       to={"/" + mediaType + "/" + data.id}
       className="w-full min-w-[230px] max-w-[230px] h-80 rounded relative overflow-hidden block hover:scale-105 transition-all"
     >
