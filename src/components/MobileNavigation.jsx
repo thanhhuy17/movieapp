@@ -10,7 +10,7 @@ const MobileNavigation = () => {
           return (
             // eslint-disable-next-line react/jsx-key
             <NavLink
-              key={nav.label + "mobilenavigation"}
+              key={nav.label + "mobilenavigation"+index}
               to={nav.href}
               className={({ isActive }) =>
                 `px-3 flex items-center flex-col justify-center ${

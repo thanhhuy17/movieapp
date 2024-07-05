@@ -8,10 +8,10 @@ import wayBackInitial from "../Hooks/useInitialPage";
 
 const Header = () => {
   const location = useLocation()
-  const removeSpace = location?.search?.slice(3).split("%20").join(" ")
+  const removeSpace = location?.search?.slice(3).split("%20").join(" ") // xóa đi 3 ký tự %20
   // console.log("Loaction Header: ", location)
   const [searchInput, setSearchInput] = useState(removeSpace);
-  const navigate = useNavigate();
+  const navigate = useNavigate();// Điều hướng
 
   // Link input on Search
   useEffect(() => {
@@ -52,7 +52,7 @@ const Header = () => {
         </nav>
 
         <div className="ml-auto flex items-center gap-4">
-          <form className="flex items-center gap-2" onSubmit={handleSubmit}>
+          <form className="flex items-center gap-2" onSubmit={handleSubmit}> 
             <input
               type="text"
               placeholder="Search here ..."
