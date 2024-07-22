@@ -15,9 +15,9 @@ const useFetch = (endPoint) => {
             console.log("Error", error);
         }
       };
-      useEffect(() => {
-        fetchData();
-      }, [endPoint]);
+    useEffect(() => {
+      fetchData();
+    }, [endPoint]);
   return {
     data, loading
   }
