@@ -72,7 +72,7 @@ const SearchPage = () => {
             return (
               <Card
                 data={searchData}
-                key={searchData.id + "searchdata" + index}
+                key={searchData.id + "searchData" + index}
                 media_type={searchData.media_type}
               />
             );

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 const BannerHome = () => {
   const bannerData = useSelector((state) => state.movie.bannerData);
+  console.log(bannerData);
   const imageURL = useSelector((state) => state.movie.imageURL);
   const [currentImg, setCurrentImg] = useState(0);
   //Next Firm

@@ -2,6 +2,8 @@ import { IoHome } from "react-icons/io5";
 import { BiSolidCameraMovie } from "react-icons/bi";
 import { PiTelevisionFill } from "react-icons/pi";
 import { IoSearchOutline } from "react-icons/io5";
+
+
 export const navigation = [
   {
     label: "TV Shows",

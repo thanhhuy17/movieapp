@@ -49,6 +49,8 @@ const ExplorePage = () => {
     window.addEventListener("scroll", handleScroll);
   }, []);
 
+  console.log(totalPageNo);
+
   return (
     <div className="py-16">
       <div className="container mx-auto">

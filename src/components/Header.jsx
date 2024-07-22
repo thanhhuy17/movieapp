@@ -7,8 +7,8 @@ import { navigation } from "../contants/navigation";
 import wayBackInitial from "../Hooks/useInitialPage";
 
 const Header = () => {
-  const location = useLocation()
-  const removeSpace = location?.search?.slice(3).split("%20").join(" ")
+  const location = useLocation();
+  const removeSpace = location?.search?.slice(3).split("%20").join(" ");
   // console.log("Loaction Header: ", location)
   const [searchInput, setSearchInput] = useState(removeSpace);
   const navigate = useNavigate();
@@ -24,9 +24,13 @@ const Header = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
   };
+
   return (
     <div className="fixed top-0 w-full h-16 bg-black bg-opacity-75 z-40">
-      <div className="container mx-auto px-3 flex items-center h-full" onClick={wayBackInitial}>
+      <div
+        className="container mx-auto px-3 flex items-center h-full"
+        onClick={wayBackInitial}
+      >
         <Link to={"/"}>
           <img src={logo} alt="logo" width={120} />
         </Link>
@@ -35,7 +39,7 @@ const Header = () => {
           {navigation.map((nav, index) => {
             return (
               // eslint-disable-next-line react/jsx-key
-              <div key={nav.label+"header"+index}>
+              <div key={nav.label + "header" + index}>
                 <NavLink
                   to={nav.href}
                   className={({ isActive }) =>

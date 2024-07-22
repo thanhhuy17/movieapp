@@ -9,13 +9,12 @@ import useFetch from "../Hooks/useFetch";
 import { useState } from "react";
 import PlayVideo from "../components/PlayVideo";
 
-
 const DetailsPage = () => {
   const params = useParams();
   const imageURL = useSelector((state) => state.movie.imageURL);
 
   const { data } = useFetchDetails(`/${params.explore}/${params.id}`);
-  console.log("Data: ", data);
+  // console.log("Data: ", data);
 
   const duration = (Number(data?.runtime) / 60).toFixed(1).split(".");
 
@@ -32,6 +31,7 @@ const DetailsPage = () => {
 
   const [playVideo, setPlayVideo] = useState(false);
   const [playVideoId, setPlayVideoId] = useState("");
+  console.log(playVideoId);
 
   // console.log("Data Cast: ", castDetail);
   const writer = castDetail?.crew
@@ -158,7 +158,11 @@ const DetailsPage = () => {
 
       <div>
         {playVideo && (
-          <PlayVideo data={data?.id}  close={() => setPlayVideo(false)} media_type={params?.explore}  />//index={data?.index}
+          <PlayVideo
+            data={data?.id}
+            close={() => setPlayVideo(false)}
+            media_type={params?.explore}
+          /> //index={data?.index}
         )}
       </div>
     </div>

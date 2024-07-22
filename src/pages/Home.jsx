@@ -36,13 +36,29 @@ const Home = () => {
         trending={true}
       />
 
-      <HorizonetalScrollCard data={nowPlayingData} heading={"Now Playing"} media_type={"movie"}/>
+      <HorizonetalScrollCard
+        data={nowPlayingData}
+        heading={"Now Playing"}
+        media_type={"movie"}
+      />
 
-      <HorizonetalScrollCard data={topRatesData} heading={"Top Rated"} media_type={"movie"}/>
+      <HorizonetalScrollCard
+        data={topRatesData}
+        heading={"Top Rated"}
+        media_type={"movie"}
+      />
 
-      <HorizonetalScrollCard data={popularMovie} heading={"Popular"} media_type={"tv"}/>
+      <HorizonetalScrollCard
+        data={popularMovie}
+        heading={"Popular"}
+        media_type={"tv"}
+      />
 
-      <HorizonetalScrollCard data={onTheAir} heading={"The next 7 days"} media_type={"tv"}/>
+      <HorizonetalScrollCard
+        data={onTheAir}
+        heading={"The next 7 days"}
+        media_type={"tv"}
+      />
     </div>
   );
 };
